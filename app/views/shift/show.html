@@ -1,0 +1,15 @@
+<div ng-app="shiftApp">
+
+  <div ng-controller="ShowCtrl">
+    <div class="spinner" ng-show="loading"></div>
+    <div class="content-padded">
+      <h2>{{shift.name}}</h2>
+      <p>{{shift.description}}</p>
+      <p>{{shift.scheduled_begin}}</p>
+      <p>{{shift.scheduled_end}}</p>
+
+    </div>
+
+  </div>
+
+</div>

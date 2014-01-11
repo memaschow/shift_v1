@@ -1,0 +1,21 @@
+<div ng-app="shiftApp">
+
+  <div ng-controller="EditCtrl">
+    <div class="spinner" ng-show="loading"></div>
+    <div class="content-padded">
+      <h1>Edit</h1>
+
+      <form class="simple-form">
+        Name: <input type="text" ng-model="shift.name" /><br />
+        Description: <input type="text" ng-model="shift.description" /><br />
+        Start: <input type="text" ng-model="shift.scheduled_begin" /><br />
+        End: <input type="text" ng-model="shift.scheduled_end" /><br />
+
+        <a class="topcoat-button" hm-tap="update(shift)">Update</a>
+        <a class="topcoat-button" hm-tap="close()">Cancel</a>
+      </form>
+    </div>
+
+  </div>
+
+</div>

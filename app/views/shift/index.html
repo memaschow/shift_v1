@@ -1,0 +1,18 @@
+<div ng-app="shiftApp">
+
+  <div ng-controller="IndexCtrl">
+    <div class="spinner" ng-show="loading"></div>
+    <div class="topcoat-list__container">
+
+      <ul class="topcoat-list">
+        <!-- order is reversed created timestamp -->
+        <li class="topcoat-list__item" hm-tap="open(shift.shift_id)" ng-repeat="shift in shifts | orderBy: '-createddate'">
+          Shift: {{ shift.name }} Start: {{shift.scheduled_begin}} Start: {{shift.scheduled_end}}
+        </li>
+      </ul>
+
+    </div>
+
+  </div>
+
+</div>
