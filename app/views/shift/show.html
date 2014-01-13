@@ -4,9 +4,11 @@
     <div class="spinner" ng-show="loading"></div>
     <div class="content-padded">
       <h2>{{shift.name}}</h2>
-      <p>{{shift.description}}</p>
-      <p>{{shift.scheduled_begin}}</p>
-      <p>{{shift.scheduled_end}}</p>
+      <h2>Begin</h2>
+      <p>{{shift.start_hours}} : {{shift.start_minutes}} Uhr</p>
+      <h2>Ende</h2>
+      <p>{{shift.end_hours}} : {{shift.end_minutes}} Uhr</p>  
+  
 
     </div>
 

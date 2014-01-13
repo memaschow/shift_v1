@@ -113,6 +113,15 @@ shiftApp.controller('ShowCtrl', function ($scope, ShiftRestangular) {
 // New: http://localhost/views/shift/new.html
 
 shiftApp.controller('NewCtrl', function ($scope, ShiftRestangular) {
+   $scope.vals = [
+{name:'1', value:"1"},
+{name:'2', value:"2"},
+{name:'3', value:"3"},
+{name:'4', value:"4"},
+{name:'5', value:"5"}
+]; 
+
+
 
   $scope.close = function() {
     steroids.modal.hide();
@@ -121,9 +130,10 @@ shiftApp.controller('NewCtrl', function ($scope, ShiftRestangular) {
   $scope.create = function(shift) {
     $scope.loading = true;
 
+    
     ShiftRestangular.all('shift').post(shift).then(function() {
 
-      // Notify the index.html to reload
+      // Notifyhttps://github.com/ the index.html to reload
       var msg = { status: 'reload' };
       window.postMessage(msg, "*");
 

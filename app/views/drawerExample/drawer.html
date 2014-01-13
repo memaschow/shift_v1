@@ -10,6 +10,8 @@
   }
 
   var shiftIndex = new steroids.views.WebView("/views/shift/index.html");
+  var appointmentIndex = new steroids.views.WebView("/views/appointment/index.html");
+
 
   function closeDrawerAndRenderPage(page) {
       steroids.layers.push(page);
@@ -22,9 +24,8 @@
   <h3 class="topcoat-list__header">Your drawer</h3>
 
   <ul class="topcoat-list">
-    <li class="topcoat-list__item" ontouchend="closeDrawerAndSendMessage('home')">Home</li>
+    <li class="topcoat-list__item" ontouchend="closeDrawerAndRenderPage(appointmentIndex)">Appointments</li> 
     <li class="topcoat-list__item" ontouchend="closeDrawerAndRenderPage(shiftIndex)">Shifts</li> 
-    <li class="topcoat-list__item" ontouchend="steroids.openURL('http://www.google.com')">Open Google</li>
   </ul>
 
 </div>

@@ -1,0 +1,20 @@
+<div ng-app="appointmentApp">
+
+  <div ng-controller="NewCtrl">
+    <div class="spinner" ng-show="loading"></div>
+    <div class="content-padded">
+      <h1>Add a new appointment</h1>
+
+      <form class="simple-form">
+        Notes: <input type="text" ng-model="appointment.notes" /><br />
+        Date: <input type="date" ng-model="appointment.date" /><br />
+
+        <a class="topcoat-button" hm-tap="create(appointment)">Add</a>
+        <a class="topcoat-button" hm-tap="close()">Cancel</a>
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
