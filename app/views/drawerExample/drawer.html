@@ -11,6 +11,8 @@
 
   var shiftIndex = new steroids.views.WebView("/views/shift/index.html");
   var appointmentIndex = new steroids.views.WebView("/views/appointment/index.html");
+  var calenderIndex = new steroids.views.WebView("/views/appointment/calenderIndex.html");
+
 
 
   function closeDrawerAndRenderPage(page) {
@@ -24,6 +26,7 @@
   <h3 class="topcoat-list__header">Your drawer</h3>
 
   <ul class="topcoat-list">
+    <li class="topcoat-list__item" ontouchend="closeDrawerAndRenderPage(calenderIndex)">Kalender</li> 
     <li class="topcoat-list__item" ontouchend="closeDrawerAndRenderPage(appointmentIndex)">Appointments</li> 
     <li class="topcoat-list__item" ontouchend="closeDrawerAndRenderPage(shiftIndex)">Shifts</li> 
   </ul>

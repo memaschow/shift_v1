@@ -1,0 +1,18 @@
+<div ng-app="appointmentApp">
+
+  <div ng-controller="CalenderIndexCtrl">
+    <div class="spinner" ng-show="loading"></div>
+    <div class="topcoat-list__container">
+
+      <ul class="topcoat-list">
+        <li class="topcoat-list__item" ng-repeat="date in dates">
+           {{ date }} 
+        </li>
+      </ul>
+
+
+    </div>
+
+  </div>
+
+</div>
