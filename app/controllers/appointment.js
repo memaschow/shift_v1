@@ -5,22 +5,6 @@ var appointmentApp = angular.module('appointmentApp', ['AppointmentModel', 'hmTo
 
 appointmentApp.controller('IndexCtrl', function ($scope, AppointmentRestangular) {
 
-   today =new Date();
-   alert(today.getMonth().toString());
-
-   $scope.dates = getDaysInMonth(today.getMonth(), today.getFullYear());
-
-function getDaysInMonth(month, year) {
-     var date = new Date(year, month, 1);
-     var days = [];
-     while (date.getMonth() === month) {
-        days.push(new Date(date));
-        date.setDate(date.getDate() + 1);
-     }
-
-     return days;
-}
-
 
   // This will be populated with Restangular
   $scope.appointments = [];
@@ -86,8 +70,6 @@ function getDaysInMonth(month, year) {
 appointmentApp.controller('CalenderIndexCtrl', function ($scope, AppointmentRestangular) {
 
    today =new Date();
-   alert(today.getMonth().toString());
-
    $scope.dates = getDaysInMonth(today.getMonth(), today.getFullYear());
 
 function getDaysInMonth(month, year) {
@@ -101,15 +83,18 @@ function getDaysInMonth(month, year) {
      return days;
 }
 
+  // Helper function for opening new webviews
+  $scope.open = function(date) {
+    localStorage.setItem("currentDate", date);
+    webView = new steroids.views.WebView("/views/appointment/newDate.html");
+    steroids.layers.push(webView);
+  };
+
+
 
   // This will be populated with Restangular
   $scope.appointments = [];
 
-  // Helper function for opening new webviews
-  $scope.open = function(id) {
-    webView = new steroids.views.WebView("/views/appointment/show.html?id="+id);
-    steroids.layers.push(webView);
-  };
 
   // Helper function for loading appointment data with spinner
   $scope.loadAppointments = function() {
@@ -141,21 +126,42 @@ function getDaysInMonth(month, year) {
   // Set navigation bar..
   steroids.view.navigationBar.show("Appointment index");
 
-  // ..and add a button to it
-  var addButton = new steroids.buttons.NavigationBarButton();
-  addButton.title = "Add";
 
-  // ..set callback for tap action
-  addButton.onTap = function() {
-    var addView = new steroids.views.WebView("/views/appointment/new.html");
-    steroids.modal.show(addView);
+
+
+});
+
+appointmentApp.controller('NewDateCtrl', function ($scope, AppointmentRestangular) {
+
+  $scope.date =localStorage.getItem("currentDate");
+
+
+  $scope.close = function() {
+    steroids.modal.hide();
   };
 
-  // and finally put it to navigation bar
-  steroids.view.navigationBar.setButtons({
-    right: [addButton]
-  });
+  $scope.create = function(appointment) {
+    $scope.loading = true;
 
+    AppointmentRestangular.all('appointment').post(appointment).then(function() {
+
+      // Notify the index.html to reload
+      var msg = { status: 'reload' };
+      window.postMessage(msg, "*");
+
+      $scope.close();
+      $scope.loading = false;
+
+    }, function() {
+      $scope.loading = false;
+
+      alert("Error when creating the object, is Restangular configured correctly, are the permissions set correctly?");
+
+    });
+
+  }
+
+  $scope.appointment = {};
 
 });
 

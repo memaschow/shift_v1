@@ -5,7 +5,7 @@
     <div class="topcoat-list__container">
 
       <ul class="topcoat-list">
-        <li class="topcoat-list__item" ng-repeat="date in dates">
+        <li class="topcoat-list__item" ng-repeat="date in dates" hm-tap="open(date)">
            {{ date }} 
         </li>
       </ul>
