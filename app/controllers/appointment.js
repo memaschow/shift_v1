@@ -1,4 +1,4 @@
-var appointmentApp = angular.module('appointmentApp', ['AppointmentModel', 'hmTouchevents']);
+var appointmentApp = angular.module('appointmentApp', ['AppointmentModel', 'hmTouchevents', 'ShiftModel']);
 
 
 // Index: http://localhost/views/appointment/index.html
@@ -131,17 +131,41 @@ function getDaysInMonth(month, year) {
 
 });
 
-appointmentApp.controller('NewDateCtrl', function ($scope, AppointmentRestangular) {
+appointmentApp.controller('NewDateCtrl', function ($scope, AppointmentRestangular,ShiftRestangular) {
+
+  $scope.shifts = [];
+
+
+    // Helper function for loading shift data with spinner
+  $scope.loadShifts = function() {
+    $scope.loading = true;
+
+    shifts.getList().then(function(data) {
+      $scope.shifts = data;
+      $scope.loading = false;
+    });
+
+  };
+
+  // Fetch all objects from the backend (see app/models/appointment.js)
+  var shifts = ShiftRestangular.all('shift');
+  $scope.loadShifts();
 
   $scope.date =localStorage.getItem("currentDate");
 
 
   $scope.close = function() {
+    steroids.layers.pop();
     steroids.modal.hide();
   };
 
-  $scope.create = function(appointment) {
+  $scope.create = function(date,shift) {
+    var appointment = {};
+    appointment.date = date;
+    appointment.appointment_to_shift = shift;
+
     $scope.loading = true;
+    //alert(JSON.stringify(appointment));
 
     AppointmentRestangular.all('appointment').post(appointment).then(function() {
 
@@ -149,8 +173,9 @@ appointmentApp.controller('NewDateCtrl', function ($scope, AppointmentRestangula
       var msg = { status: 'reload' };
       window.postMessage(msg, "*");
 
-      $scope.close();
-      $scope.loading = false;
+    steroids.layers.pop();
+        $scope.loading = false;
+
 
     }, function() {
       $scope.loading = false;

@@ -1,14 +1,22 @@
 <div ng-app="appointmentApp">
 
   <div ng-controller="NewDateCtrl">
+      <form class="simple-form">
 
-  		<h1>{{date}}</h1>
-  		 <!-- 	<form class="simple-form" ng-repeat="shift in shifts">
-				<input type="radio" ng-model="appointment_to_shift" value="red"> Red <br/>
-				<input type="radio" ng-model="color" value="green"> Green <br/>
-				<input type="radio" ng-model="color" value="blue"> Blue <br/>
-				<tt>color = {{color}}</tt><br/>
-			</form> -->
+  			<h1 ng-model="appointment.date">{{date}}</h1>
+
+  		    <ul class="topcoat-list">
+        		<li class="topcoat-list__item"
+        			ng-model="appointment.notes"
+        			ng-repeat="shift in shifts" 
+        			hm-tap="create(date,shift.shift_id)">
+          			Shift: {{ shift.name }}
+        		</li>
+      		</ul>
+
+
+
+		</form>
   </div>
 
 </div>

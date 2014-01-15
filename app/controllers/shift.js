@@ -1,6 +1,17 @@
 var shiftApp = angular.module('shiftApp', ['ShiftModel', 'hmTouchevents']);
 
 
+    
+    shiftApp.factory('shiftService', ['$http', function() {
+
+    
+    var allShifts = $scope.shifts;
+    alert(allShifts);
+      return {
+      allShifts: shifts
+      };
+    }]);
+
 // Index: http://localhost/views/shift/index.html
 
 shiftApp.controller('IndexCtrl', function ($scope, ShiftRestangular) {
