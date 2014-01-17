@@ -26,11 +26,6 @@ appointmentApp.controller('IndexCtrl', function ($scope, AppointmentRestangular)
 
   };
 
-  // Fetch all objects from the backend (see app/models/appointment.js)
-  var appointments = AppointmentRestangular.all('appointment');
-  $scope.loadAppointments();
-
-
   // Get notified when an another webview modifies the data and reload
   window.addEventListener("message", function(event) {
     // reload data on message with reload status
@@ -69,18 +64,53 @@ appointmentApp.controller('IndexCtrl', function ($scope, AppointmentRestangular)
 
 appointmentApp.controller('CalenderIndexCtrl', function ($scope, AppointmentRestangular) {
 
+
+
    today =new Date();
    $scope.dates = getDaysInMonth(today.getMonth(), today.getFullYear());
 
 function getDaysInMonth(month, year) {
-     var date = new Date(year, month, 1);
+     var loopDate = new Date(year, month, 1);
      var days = [];
-     while (date.getMonth() === month) {
-        days.push(new Date(date));
-        date.setDate(date.getDate() + 1);
+     while (loopDate.getMonth() === month) {
+        var day = {};
+        day.name = new Date(loopDate);
+        var a = getAppointmentFromDate(day.name.toString());
+        //day.shift = a.appointment_to_shift;
+
+        days.push(day);
+        loopDate.setDate(loopDate.getDate() + 1);
      }
 
      return days;
+}
+
+
+function getAppointmentFromDate(date)
+{
+  var a;
+
+  var appointments = AppointmentRestangular.all('appointment');
+
+      appointments.getList().then(function(data) {
+        $scope.appointments = data;
+
+          var appointmentObject = _.find(data, function(data) {
+          return data.date === date;
+          });
+
+          a = appointmentObject.appointment_to_shift;
+          alert(a);
+
+      $scope.loading = false;
+      });
+         
+
+        //alert(id);
+        //return appointmentId.appointment_to_shift;
+
+
+
 }
 
   // Helper function for opening new webviews
@@ -102,6 +132,8 @@ function getDaysInMonth(month, year) {
 
     appointments.getList().then(function(data) {
       $scope.appointments = data;
+
+
       $scope.loading = false;
     });
 
@@ -134,6 +166,8 @@ function getDaysInMonth(month, year) {
 appointmentApp.controller('NewDateCtrl', function ($scope, AppointmentRestangular,ShiftRestangular) {
 
   $scope.shifts = [];
+
+  //todo: Here need to load shifts of this date. You can solve this via 
 
 
     // Helper function for loading shift data with spinner

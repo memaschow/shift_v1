@@ -5,12 +5,22 @@
 
   			<h1 ng-model="appointment.date">{{date}}</h1>
 
+        <ul class="topcoat-list">
+            <li class="topcoat-list__item"
+              ng-repeat="shift in shifts | filter:date" 
+              >
+                Shift: {{ shift.name }}
+
+            </li>
+          </ul>
+
   		    <ul class="topcoat-list">
         		<li class="topcoat-list__item"
         			ng-model="appointment.notes"
         			ng-repeat="shift in shifts" 
         			hm-tap="create(date,shift.shift_id)">
           			Shift: {{ shift.name }}
+
         		</li>
       		</ul>
 
