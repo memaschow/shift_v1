@@ -7,6 +7,9 @@
       <ul class="topcoat-list">
         <li class="topcoat-list__item" ng-repeat="date in dates" hm-tap="open(date)">
            {{ date.name }} 
+           <ul>
+              <li ng-repeat="appointment in appointments | filter:Jan"></li>
+           </ul>
         </li>
       </ul>
 

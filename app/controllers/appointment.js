@@ -72,12 +72,15 @@ appointmentApp.controller('CalenderIndexCtrl', function ($scope, AppointmentRest
 function getDaysInMonth(month, year) {
      var loopDate = new Date(year, month, 1);
      var days = [];
+     //var appointments = AppointmentRestangular.all('appointment');
+     //var appointmentslist= appointments.getList();
+
      while (loopDate.getMonth() === month) {
         var day = {};
         day.name = new Date(loopDate);
-        var a = getAppointmentFromDate(day.name.toString());
-        //day.shift = a.appointment_to_shift;
-
+        //a = getAppointmentFromDate(loopDate.toString());
+        //alert(localStorage.getItem(currentShiftId));
+        //alert($scope.x);
         days.push(day);
         loopDate.setDate(loopDate.getDate() + 1);
      }
@@ -86,32 +89,30 @@ function getDaysInMonth(month, year) {
 }
 
 
-function getAppointmentFromDate(date)
+/*function getAppointmentFromDate(date)
 {
-  var a;
-
-  var appointments = AppointmentRestangular.all('appointment');
-
+  appointments = AppointmentRestangular.all('appointment');
+  var $scope.x={};
       appointments.getList().then(function(data) {
         $scope.appointments = data;
 
           var appointmentObject = _.find(data, function(data) {
           return data.date === date;
           });
-
-          a = appointmentObject.appointment_to_shift;
-          alert(a);
-
-      $scope.loading = false;
+            $scope.x = appointmentObject.appointment_to_shift;
+            alert(x);
+            //day.shift = x;
+            //localStorage.setItem("currentShiftId", x);
+            //return appointmentObject.appointment_to_shift;
+            
       });
-         
-
+            
+            
         //alert(id);
         //return appointmentId.appointment_to_shift;
 
-
-
-}
+      $scope.loading = false;
+}*/
 
   // Helper function for opening new webviews
   $scope.open = function(date) {
