@@ -1,5 +1,5 @@
 <script>
-      steroids.view.navigationBar.show("Hello World");
+      steroids.view.navigationBar.show("Papershift");
 
   // Listen for window.postMessage() messages that drawer sends us
 
@@ -24,15 +24,35 @@
   // Helper functions
 
   function openDrawer() {
+
     steroids.drawers.show(leftDrawer);
+
   }
+
+    // Set navigation bar..
+  steroids.view.navigationBar.show("Papershift");
+
+  // ..and add a button to it
+  var addButton = new steroids.buttons.NavigationBarButton();
+  addButton.title = "<<";
+
+  // ..set callback for tap action
+  addButton.onTap = function() {
+      openDrawer();
+  };
+
+  // and finally put it to navigation bar
+  steroids.view.navigationBar.setButtons({
+    left: [addButton]
+  });
+
 
 </script>
 
 
 <div class="content-padded">
 
-  <h1>Drawer Example</h1>
+  <h1>Deine Übersicht</h1>
 
   <div class="topcoat-button--large--cta" ontouchend="openDrawer()">Open drawer</div>
 

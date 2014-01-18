@@ -4,9 +4,15 @@
     <div class="spinner" ng-show="loading"></div>
     <div class="topcoat-list__container">
 
+
       <ul class="topcoat-list">
-        <li class="topcoat-list__item" ng-repeat="date in dates" hm-tap="open(date)">
-           {{ date }} 
+        <li class="topcoat-list__item"  ng-repeat="datum in dates" hm-tap="open(datum)">
+            <label>{{ datum | date:'fullDate'}}</label>
+           <ul>
+              <div ng-repeat="appointment in appointments | filter:datum">
+              <li ng-repeat="shift in shifts | filter:appointment.appointment_to_shift ">{{shift.name}} </li>
+              </div>
+           </ul>
         </li>
       </ul>
 

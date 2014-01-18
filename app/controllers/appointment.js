@@ -5,7 +5,6 @@ var appointmentApp = angular.module('appointmentApp', ['AppointmentModel', 'hmTo
 
 appointmentApp.controller('IndexCtrl', function ($scope, AppointmentRestangular) {
 
-
   // This will be populated with Restangular
   $scope.appointments = [];
 
@@ -43,11 +42,11 @@ appointmentApp.controller('IndexCtrl', function ($scope, AppointmentRestangular)
   // -- Native navigation
 
   // Set navigation bar..
-  steroids.view.navigationBar.show("Appointment index");
+  steroids.view.navigationBar.show("Meine Belegunen");
 
   // ..and add a button to it
   var addButton = new steroids.buttons.NavigationBarButton();
-  addButton.title = "Add";
+  addButton.title = "+";
 
   // ..set callback for tap action
   addButton.onTap = function() {
@@ -67,7 +66,25 @@ appointmentApp.controller('IndexCtrl', function ($scope, AppointmentRestangular)
 
 // Index: http://localhost/views/appointment/index.html
 
-appointmentApp.controller('CalenderIndexCtrl', function ($scope, AppointmentRestangular) {
+appointmentApp.controller('CalenderIndexCtrl', function ($scope, AppointmentRestangular,ShiftRestangular) {
+
+     $scope.shifts = [];
+
+    // Helper function for loading shift data with spinner
+  $scope.loadShifts = function() {
+    $scope.loading = true;
+
+    shifts.getList().then(function(data) {
+      $scope.shifts = data;
+      $scope.loading = false;
+    });
+
+  };
+
+  // Fetch all objects from the backend (see app/models/appointment.js)
+  var shifts = ShiftRestangular.all('shift');
+  $scope.loadShifts();
+
 
    today =new Date();
    $scope.dates = getDaysInMonth(today.getMonth(), today.getFullYear());
@@ -76,7 +93,8 @@ function getDaysInMonth(month, year) {
      var date = new Date(year, month, 1);
      var days = [];
      while (date.getMonth() === month) {
-        days.push(new Date(date));
+        var utcDay = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), 00, 00, 00);
+        days.push(utcDay);
         date.setDate(date.getDate() + 1);
      }
 
@@ -124,7 +142,7 @@ function getDaysInMonth(month, year) {
   // -- Native navigation
 
   // Set navigation bar..
-  steroids.view.navigationBar.show("Appointment index");
+  steroids.view.navigationBar.show("Kalender");
 
 
 
@@ -223,10 +241,10 @@ appointmentApp.controller('ShowCtrl', function ($scope, AppointmentRestangular) 
   });
 
   // -- Native navigation
-  steroids.view.navigationBar.show("Appointment: " + steroids.view.params.id );
+  steroids.view.navigationBar.show("Meine Belegung" );
 
   var editButton = new steroids.buttons.NavigationBarButton();
-  editButton.title = "Edit";
+  editButton.title = "bearbeiten";
 
   editButton.onTap = function() {
     webView = new steroids.views.WebView("/views/appointment/edit.html");
