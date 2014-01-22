@@ -1,0 +1,25 @@
+<div ng-app="absenceApp">
+
+  <div ng-controller="NewCtrl">
+    <div class="spinner" ng-show="loading"></div>
+    <div class="content-padded">
+      <h1>Add a new absence</h1>
+
+      <form class="simple-form">
+        Start: <input type="date" ng-model="absence.start" /><br />
+        Ende: <input type="date" ng-model="absence.end" /><br />
+        Notiz: <input type="text" ng-model="absence.note" /><br />
+
+        Korrigierte Stunden <input type="number" ng-model="absence.hours" /><br />
+        Urlaubstage <input type="number" ng-model="absence.vacationDays" /><br />
+
+
+        <a class="topcoat-button" hm-tap="create(absence)">Add</a>
+        <a class="topcoat-button" hm-tap="close()">Cancel</a>
+      </form>
+
+    </div>
+
+  </div>
+
+</div>

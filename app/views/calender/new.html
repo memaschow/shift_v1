@@ -1,0 +1,22 @@
+<div ng-app="calenderApp">
+
+  <div ng-controller="NewCtrl">
+      <form class="simple-form">
+
+  			<h1 ng-model="appointment.date">{{date | date:'fullDate'}}</h1>
+          <p>Wählen Sie ihre Schicht:</p>
+  		    <ul class="topcoat-list">
+        		<li class="topcoat-list__item"
+        			ng-model="appointment.notes"
+        			ng-repeat="shift in shifts" 
+        			hm-tap="create(date,shift.shift_id)">
+          			{{ shift.name }}
+        		</li>
+      		</ul>
+
+
+
+		</form>
+  </div>
+
+</div>

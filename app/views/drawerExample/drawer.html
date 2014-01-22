@@ -1,5 +1,8 @@
 <script>
 
+      steroids.layers.pop();
+
+
   // Sends message for the main view that listens with addEventListener()
 
   function closeDrawerAndSendMessage(selection) {
@@ -9,27 +12,42 @@
     steroids.drawers.hideAll();
   }
 
-  var shiftIndex = new steroids.views.WebView("/views/shift/index.html");
   var appointmentIndex = new steroids.views.WebView("/views/appointment/index.html");
-  var calenderIndex = new steroids.views.WebView("/views/appointment/calenderIndex.html");
-
+  var calenderIndex = new steroids.views.WebView("/views/calender/index.html");
+  var absenceIndex = new steroids.views.WebView("/views/absence/index.html");
+  var statisticIndex = new steroids.views.WebView("/views/statistic/index.html");
 
 
   function closeDrawerAndRenderPage(page) {
-      steroids.layers.push(page);
-      steroids.drawers.hideAll();
-  }
+    steroids.layers.push(page);
+    steroids.drawers.hideAll();
+
+}
+
+     
 
 </script>
 
-<div class="topcoat-list__container white-bg">
-  <h3 class="topcoat-list__header">Dein Papershift</h3>
+<div>
+  <img src="/img/logo_transparent.png" style="width:65%;" class="topcoat-list__header"></img>
 
   <ul class="topcoat-list">
-    <li class="topcoat-list__item" ontouchend="closeDrawerAndRenderPage(calenderIndex)">Kalender</li> 
-    <li class="topcoat-list__item" ontouchend="closeDrawerAndRenderPage(appointmentIndex)">Meine Belegungen</li> 
-    <br>
-    <li class="topcoat-list__item" ontouchend="closeDrawerAndRenderPage(shiftIndex)">Schichten</li> 
+    <li class="topcoat-list__item" ontouchend="closeDrawerAndRenderPage(calenderIndex)">
+    Kalender</li> 
+    <li class="topcoat-list__item" ontouchend="closeDrawerAndRenderPage(appointmentIndex)">
+
+    Meine Belegungen <span class="topcoat-notification">1
+      </span></li> 
+    <li class="topcoat-list__item" ontouchend="closeDrawerAndRenderPage(absenceIndex)">Abwesenheiten <span class="topcoat-notification">1
+      </span></li> 
+    <li class="topcoat-list__item" ontouchend="closeDrawerAndRenderPage(statisticIndex)">
+    Daten</li> 
+
+
+ 
   </ul>
+
+
+
 
 </div>

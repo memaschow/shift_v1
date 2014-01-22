@@ -4,7 +4,7 @@
 steroids.config.name = "shift_v1"
 
 # -- Initial Location --
-steroids.config.location = "http://localhost/views/drawerExample/index.html"
+steroids.config.location = "http://localhost/views/dashboard/index.html"
 
 # -- Tab Bar --
 # steroids.config.tabBar.enabled = true
@@ -29,7 +29,7 @@ steroids.config.location = "http://localhost/views/drawerExample/index.html"
 # steroids.config.tabBar.backgroundImage = ""
 
 # -- Navigation Bar --
-steroids.config.navigationBar.tintColor = "#34495E"
+steroids.config.navigationBar.tintColor = "#20b99a"
 steroids.config.navigationBar.titleColor = "#ffffff"
 steroids.config.navigationBar.buttonTintColor = "#ffffff"
 steroids.config.navigationBar.buttonTitleColor = "#ffffff"

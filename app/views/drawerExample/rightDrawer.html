@@ -1,0 +1,36 @@
+<script>
+
+  // Sends message for the main view that listens with addEventListener()
+
+  function closeDrawerAndSendMessage(selection) {
+    var msg = { selection: selection };
+    window.postMessage(msg, "*");
+
+    steroids.drawers.hideAll();
+  }
+
+  var shiftIndex = new steroids.views.WebView("/views/shift/index.html");
+  var appointmentIndex = new steroids.views.WebView("/views/appointment/index.html");
+  var calenderIndex = new steroids.views.WebView("/views/calender/index.html");
+  var absenceIndex = new steroids.views.WebView("/views/absence/index.html");
+  var flagIndex = new steroids.views.WebView("/views/flag/index.html");
+
+
+  function closeDrawerAndRenderPage(page) {
+      steroids.layers.push(page);
+      steroids.drawers.hideAll();
+  }
+
+</script>
+
+<div class="topcoat-list__container white-bg">
+
+  <ul class="topcoat-list">
+    <li class="topcoat-list__item" ontouchend="closeDrawerAndRenderPage(shiftIndex)">Schichten</li>
+    <li class="topcoat-list__item" ontouchend="closeDrawerAndRenderPage(flagIndex)">Flags</li>
+
+    <li class="topcoat-list__item" ontouchend="closeDrawerAndRenderPage(shiftIndex)">TODO Account</li>
+    <li class="topcoat-list__item" ontouchend="closeDrawerAndRenderPage(shiftIndex)">Einstellungen</li>
+  </ul>
+
+</div>

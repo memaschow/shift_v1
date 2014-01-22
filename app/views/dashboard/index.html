@@ -3,10 +3,6 @@
 
   // Listen for window.postMessage() messages that drawer sends us
 
-  window.addEventListener("message", function(msg) {
-    var elem = document.querySelector("#selectedInDrawer");
-    elem.textContent = msg.data.selection;
-  });
 
   // Initialize the both drawers
 
@@ -84,6 +80,7 @@ function openRightDrawer() {
   <h1 class="center"> Dein Stundenzettel im dabei und aktuell. Jetzt starten!</h1>
   <div class="center"><div class="topcoat-button--large--cta" ontouchend="openLeftDrawer()">Open drawer</div></div>
 
-  <p style="color:white;">Selected in drawer: <span id="selectedInDrawer">Kostenlos!!!</span></p>
+  
+
 </div>
 

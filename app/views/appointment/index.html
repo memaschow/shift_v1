@@ -7,7 +7,9 @@
       <ul class="topcoat-list">
         <!-- order is reversed created timestamp -->
         <li class="topcoat-list__item" hm-tap="open(appointment.appointment_id)" ng-repeat="appointment in appointments | orderBy: '-createddate'">
-          Appointment: {{ appointment.appointment_to_shift }} ,  {{ appointment.date }}
+           {{ appointment.date | date:'fullDate' }}
+<!--            <div ng-repeat="shift in shifts | filter:appointment.appointment_id">{{shift.name}} </div>
+<!--            need to add appointment_id to shift item-->        
         </li>
         
       </ul>

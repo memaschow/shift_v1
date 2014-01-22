@@ -1,0 +1,18 @@
+<div ng-app="absenceApp">
+
+  <div ng-controller="IndexCtrl">
+    <div class="spinner" ng-show="loading"></div>
+    <div class="topcoat-list__container">
+
+      <ul class="topcoat-list">
+        <!-- order is reversed created timestamp -->
+        <li class="topcoat-list__item" hm-tap="open(absence.absence_id)" ng-repeat="absence in absences | orderBy: '-createddate'">
+          Absence: {{ absence.name }} Status: {{absence.status}}
+        </li>
+      </ul>
+
+    </div>
+
+  </div>
+
+</div>

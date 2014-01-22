@@ -940,3 +940,10 @@ limitations under the License.
   cursor: default;
   pointer-events: none;
 }
+
+.topcoat-notification {
+  padding: 0.15em 0.5em 0.2em;
+  border-radius: 2px;
+  background-color: #ec514e;
+  color: #fff;
+}

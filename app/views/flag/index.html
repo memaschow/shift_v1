@@ -1,0 +1,19 @@
+<div ng-app="flagApp">
+
+  <div ng-controller="IndexCtrl">
+    <div class="spinner" ng-show="loading"></div>
+    <div class="topcoat-list__container">
+
+      <ul class="topcoat-list">
+        <!-- order is reversed created timestamp -->
+        <li class="topcoat-list__item" hm-tap="open(flag.flag_id)" ng-repeat="flag in flags | orderBy: '-createddate'">
+          Name: {{ flag.name }} , <p>Symbol: <span class="topcoat-notification">{{flag.short}}
+      </span></p>
+        </li>
+      </ul>
+
+    </div>
+
+  </div>
+
+</div>

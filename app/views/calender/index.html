@@ -1,0 +1,26 @@
+<div ng-app="calenderApp">
+
+  <div ng-controller="IndexCtrl">
+    <div class="spinner" ng-show="loading"></div>
+    <div class="topcoat-list__container">
+
+
+      <ul class="topcoat-list">
+        <li class="topcoat-list__item"  ng-repeat="datum in dates" hm-tap="open(datum)">
+            <label style="color:rgb(231, 76, 60);"><b>{{ datum | date:'fullDate'}}<b></label>                    <span style="float:right;"class="topcoat-flag">1</span>
+            <span style="float:right;"class="topcoat-flag">1</span>
+
+              <div ng-repeat="appointment in appointments | filter:datum">
+
+              <span ng-repeat="shift in shifts | filter:appointment.appointment_to_shift ">{{shift.name}} 
+              </span>
+              </div>
+        </li>
+      </ul>
+
+
+    </div>
+
+  </div>
+
+</div>
